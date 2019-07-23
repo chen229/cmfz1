@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.baizhi.dao.UserDao">
+    <!--根据性别查询各个城市的注册人数-->
+    <select id="selectByProAndSex" resultType="Maps">
+        select province as name,count(*) as value from c_user
+        where sex=#{sex} group by province
+    </select>
+
+
+    <!--按性别查询每个月注册的人数-->
+    <select id="selectBySex1" resultType="Integer">
+        select count(*) from c_user where DATEDIFF(now(),create_time) &lt; 32  and sex=#{sex};
+    </select>
+    <!--按性别查询每个月注册的人数-->
+    <select id="selectBySex2" resultType="Integer">
+        select count(*) from c_user where DATEDIFF(now(),create_time) &lt; 60 and sex=#{sex};
+    </select>
+    <!--按性别查询每个月注册的人数-->
+    <select id="selectBySex3" resultType="Integer">
+        select count(*) from c_user where DATEDIFF(now(),create_time) &lt; 91  and sex=#{sex};
+    </select>
+    <!--按性别查询每个月注册的人数-->
+    <select id="selectBySex4" resultType="Integer">
+        select count(*) from c_user where DATEDIFF(now(),create_time) &lt; 121  and sex=#{sex};
+    </select>
+    <!--按性别查询每个月注册的人数-->
+    <select id="selectBySex5" resultType="Integer">
+        select count(*) from c_user where DATEDIFF(now(),create_time) &lt; 152 and sex=#{sex};
+    </select>
+    <!--按性别查询每个月注册的人数-->
+    <select id="selectBySex6" resultType="Integer">
+        select count(*) from c_user where DATEDIFF(now(),create_time) &lt; 182  and sex=#{sex};
+    </select>
+
+</mapper>

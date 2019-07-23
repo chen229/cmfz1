@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.baizhi.dao.BannerDao">
+    <!--分页查询全部信息-->
+    <select id="selectByPage" resultType="Banner">
+        select id,name,cover,description,status,createtime from c_banner
+        order by ${sidx} ${sord}
+        limit #{currentPage},#{pageSize}
+    </select>
+    <!--模糊查询-->
+    <select id="selectByLike" resultType="Banner">
+      select id,name,cover,description,status,createtime from c_banner
+      where name  like concat('%',#{name},'%')
+       order by ${sidx} ${sord}
+        limit #{currentPage},#{pageSize}
+    </select>
+    <!--查询总的信息条数-->
+    <select id="count" resultType="Integer">
+        select count(*) from c_banner
+    </select>
+    <!--查询全部的信息-->
+    <select id="selectAll" resultType="Banner">
+        select id,name,cover,description,status,createtime from c_banner
+    </select>
+    <!--根据id删除轮播图-->
+    <delete id="deleteBanner">
+        delete from c_banner where id=#{id}
+    </delete>
+    <!--更新轮播图-->
+    <update id="updateBanner">
+        update c_banner
+          <set>
+              <if test="name!=null">name=#{name},</if>
+              <if test="cover!=null">cover=#{cover},</if>
+              <if test="description!=null">description=#{description},</if>
+              <if test="status!=null">status=#{status},</if>
+              <if test="createtime!=null">createtime=#{createtime}</if>
+          </set>
+        where id=#{id}
+    </update>
+    <!--添加轮播图-->
+    <insert id="insertBanner">
+      insert into c_banner values (#{id},#{name},#{cover},#{description},#{status},#{createtime})
+    </insert>
+</mapper>
