@@ -33,6 +33,7 @@ public class RedisCacheHash {
         MethodSignature signature = (MethodSignature) proceedingJoinPoint.getSignature();
         Method method = signature.getMethod();//获得执行方法
         String methodName = method.getName();//方法名
+        System.out.println("methodName  "+methodName);
 
         String className = proceedingJoinPoint.getTarget().getClass().getName();//类名
         Object[] args = proceedingJoinPoint.getArgs();//获得执行方法的实参
@@ -47,6 +48,7 @@ public class RedisCacheHash {
 
         }
         String key = builder.toString();
+        System.out.println("key  "+key);
         //判断要执行的方法上是否存在注解
         boolean b = method.isAnnotationPresent(RedisCache.class);
         if (b){

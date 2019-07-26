@@ -11,6 +11,15 @@
         </div><!-- /input-group -->
     </div><!-- /.col-lg-6 -->
 </div><!-- /.row -->
+<br>
+<div class="panel panel-default">
+    <div class="panel-heading">已为您找到以下内容</div>
+    <table class="table" id="article-table-search">
+
+    </table>
+</div>
+
+
 <script type="text/javascript">
     $("#search1").click(function () {
         var content= $("#input-value").val();
@@ -20,14 +29,14 @@
             dataType:'json',
             type:'post',
             success:function (data) {
-
+                $("#article-table-search").empty();
+                $.each(data,function (index, article) {
+                 var tr=$("<tr><td>"+article.title+"</td><td>"+article.author+"</td><td>"+article.content+"</td></tr>")
+                    $("#article-table-search").append(tr);
+                })
             }
         })
     });
-
-
-
-
 
 
 </script>

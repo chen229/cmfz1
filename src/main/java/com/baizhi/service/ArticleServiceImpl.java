@@ -26,6 +26,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -118,6 +120,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<Article> findByContent(String content) {
+        System.out.println("content   "+content);
         //es代码
         if ("".equals(content) || content==null){//用户没有输入内容,那么系统默认查询所有并展示
             Iterable<Article> articles = articleRepository.findAll();
@@ -151,8 +154,25 @@ public class ArticleServiceImpl implements ArticleService {
                         article.setAuthor(map.get("author").toString());
                         article.setTitle(map.get("title").toString());
                         article.setContent(map.get("content").toString());
-                        String date = map.get("createTime").toString();
-                        article.setCreateTime(new Date(Long.valueOf(date)));
+
+
+//                        String date = map.get("createTime").toString();
+                        String  date =  map.get("createTime").toString();
+                        System.out.println("string date:"+date);
+
+//                        Long aLong = Long.valueOf(date);
+//                        System.out.println("long"+aLong);
+//
+//                        Date date1 = new Date(aLong);
+                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        Date date1 = null;
+                        try {
+                            date1 = format.parse(date);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        System.out.println("Date"+date1);
+                        article.setCreateTime(date1);
 
                         //高亮
                         Map<String, HighlightField> fieldMap = hit.getHighlightFields();

@@ -22,7 +22,7 @@ public class BannerServiceImpl implements BannerService {
     //查找所有轮播图
     @Override
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
-    @RedisCache
+
     public List<Banner> findAllBanner() {
         List<Banner> banners = bannerDao.selectAll();
         return banners;
@@ -30,9 +30,14 @@ public class BannerServiceImpl implements BannerService {
 
     @Override//分页查询
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
+    @RedisCache
     public List<Banner> findByPage(Integer currentPage, Integer pageSize, String sidx, String sord) {
         currentPage=(currentPage-1)*pageSize;
         List<Banner> banners = bannerDao.selectByPage(currentPage, pageSize, sidx, sord);
+//        System.out.println(currentPage);
+//        System.out.println(pageSize);
+//        System.out.println(sidx);
+//        System.out.println(sord);
         return banners;
     }
 

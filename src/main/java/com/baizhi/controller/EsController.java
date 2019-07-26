@@ -5,6 +5,7 @@ import com.baizhi.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class EsController {
     private ArticleService articleService;
 
     @RequestMapping("/esArticle")
+    @ResponseBody
     public List<Article> esArticle(String content){
         List<Article> articleList = articleService.findByContent(content);
         for (Article article : articleList) {
