@@ -89,6 +89,9 @@
                                     <li class="list-group-item">
                                         <a href="javascript:$('#contentLayout').load('${pageContext.request.contextPath}/article/article.jsp')" class="btn btn-warning" >查看所有文章</a>
                                     </li>
+                                    <li class="list-group-item">
+                                        <a href="javascript:$('#contentLayout').load('${pageContext.request.contextPath}/article/article-es.jsp')" class="btn btn-warning" >搜索文章</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

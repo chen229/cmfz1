@@ -28,6 +28,9 @@ spring:
     multipart:
       max-file-size: 50MB
       max-request-size: 100MB
+  data:
+    elasticsearch:
+      cluster-nodes: 192.168.136.142:9300
 mybatis:
   #指定mapper文件的位置
   mapper-locations: classpath:com/baizhi/mapper/*Mapper.xml

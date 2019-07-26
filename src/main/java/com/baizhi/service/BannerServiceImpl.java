@@ -1,5 +1,6 @@
 package com.baizhi.service;
 
+import com.baizhi.annotion.RedisCache;
 import com.baizhi.dao.BannerDao;
 import com.baizhi.entity.Banner;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ public class BannerServiceImpl implements BannerService {
     //查找所有轮播图
     @Override
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
+    @RedisCache
     public List<Banner> findAllBanner() {
         List<Banner> banners = bannerDao.selectAll();
         return banners;

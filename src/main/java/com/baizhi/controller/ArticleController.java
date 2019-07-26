@@ -35,7 +35,6 @@ public class ArticleController {
     public Map<String,Object> editArticle(String oper, Article article){
         Map<String,Object> map=new HashMap<>();
         if ("add".equals(oper)){
-            System.out.println("&&&&&cheng工了吗");
             articleService.addArticle(article);
             map.put("status","ok");
         }else if("del".equals(oper)){

@@ -19,4 +19,6 @@ public interface ArticleService {
     List<Article> findAll();
     //根据上师id查询文章
     List<Article> findByGuruId(String guruId);
+    //根据输入的内容查询文章
+    List<Article> findByContent(String content);
 }
